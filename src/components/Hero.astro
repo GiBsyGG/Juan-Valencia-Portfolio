@@ -1,0 +1,295 @@
+---
+const titular = 'Construyo la arquitectura\nde sistemas interactivos.';
+const lineNumbers = '1\n2\n3\n4\n5\n6\n7\n8';
+---
+
+<section id="hero" aria-labelledby="hero-title" class="hero">
+	<div class="grid">
+		<div class="copy">
+			<p class="eyebrow"><span class="num" data-section-num="hero">00</span> // $ whoami</p>
+			<h1 id="hero-title">
+					<span class="sr-only">{titular}</span>
+					<span class="typed" aria-hidden="true"></span><span class="caret" aria-hidden="true"></span><span class="rest" aria-hidden="true">{titular}</span>
+				</h1>
+			<p class="lead">
+				Desarrollador de Software e Ingeniero de Sistemas. Diseño la arquitectura detrás de videojuegos y experiencias web: sistemas modulares, legibles y pensados para escalar.
+			</p>
+			<div class="ctas">
+				<a class="btn btn-solid" href="#proyectos">
+					<span>ver_proyectos()</span>
+					<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 5v14"></path><path d="M6 13l6 6 6-6"></path></svg>
+				</a>
+				<a class="btn btn-ghost" href="#contacto">contacto --open</a>
+			</div>
+		</div>
+
+		<div class="editor">
+			<div class="editor-bar">
+				<span class="file"><span class="dot"></span>perfil.config.ts</span>
+				<span>UTF-8</span>
+			</div>
+			<div class="editor-body">
+				<div class="gutter" aria-hidden="true">{lineNumbers}</div>
+				<pre><span class="c-comment">// entorno de trabajo</span>
+<span class="c-kw">export const</span> <span class="c-id">dev</span> = &#123;
+  rol:     <span class="c-str">"Software Developer"</span>,
+  foco:    [<span class="c-str">"arquitectura"</span>, <span class="c-str">"sistemas"</span>],
+  stack:   [<span class="c-str">"[LENGUAJE]"</span>, <span class="c-str">"[MOTOR]"</span>],
+  base:    <span class="c-str">"[CIUDAD, PAÍS]"</span>,
+  estado:  <span class="c-str">"disponible"</span>,
+&#125;;</pre>
+			</div>
+			<div class="editor-status">
+				<span>⎇ main</span>
+				<span>Ln 8, Col 3</span>
+			</div>
+		</div>
+	</div>
+</section>
+
+<noscript>
+	<style>
+		.rest {
+			opacity: 1 !important;
+		}
+	</style>
+</noscript>
+
+<script>
+	const typed = document.querySelector<HTMLElement>('#hero-title .typed');
+	const rest = document.querySelector<HTMLElement>('#hero-title .rest');
+
+	if (typed && rest) {
+		const full = rest.textContent ?? '';
+		const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+		const SPEED = 45;
+
+		if (reduce) {
+			typed.textContent = full;
+			rest.textContent = '';
+		} else {
+			let n = 0;
+			const timer = setInterval(() => {
+				n++;
+				typed.textContent = full.slice(0, n);
+				rest.textContent = full.slice(n);
+				if (n >= full.length) clearInterval(timer);
+			}, SPEED);
+		}
+	}
+</script>
+
+<style>
+	.hero {
+		min-height: calc(100vh - 64px);
+		padding: clamp(72px, 12vh, 140px) 0 clamp(80px, 12vh, 140px);
+		box-sizing: border-box;
+		display: flex;
+		align-items: center;
+	}
+
+	.grid {
+		display: flex;
+		flex-wrap: wrap;
+		gap: clamp(40px, 6vw, 80px);
+		align-items: center;
+		width: 100%;
+	}
+
+	.copy {
+		flex: 999 1 520px;
+		min-width: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 28px;
+	}
+
+	.eyebrow {
+		margin: 0;
+		font-family: var(--font-mono);
+		font-size: 13px;
+		color: var(--fg-muted);
+		letter-spacing: 0.02em;
+	}
+
+	.num.is-active {
+		color: var(--accent);
+	}
+
+	h1 {
+		margin: 0;
+		font-family: var(--font-mono);
+		font-weight: 500;
+		font-size: clamp(34px, 5.2vw, 64px);
+		line-height: 1.08;
+		letter-spacing: -0.02em;
+		color: var(--fg);
+		white-space: pre-line;
+	}
+
+	.sr-only {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip: rect(0 0 0 0);
+		white-space: nowrap;
+	}
+
+	.caret {
+		display: inline-block;
+		width: 0.55em;
+		height: 0.95em;
+		margin-left: 2px;
+		vertical-align: -0.1em;
+		background: var(--accent);
+		animation: blink 1s steps(1) infinite;
+	}
+
+	.rest {
+		opacity: 0;
+	}
+
+	@keyframes blink {
+		0%,
+		49% {
+			opacity: 1;
+		}
+		50%,
+		100% {
+			opacity: 0;
+		}
+	}
+
+	.lead {
+		margin: 0;
+		max-width: 560px;
+		font-size: 18px;
+		line-height: 1.65;
+		color: var(--fg-soft);
+	}
+
+	.ctas {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 12px;
+		padding-top: 8px;
+		font-family: var(--font-mono);
+	}
+
+	.btn {
+		display: inline-flex;
+		align-items: center;
+		min-height: 48px;
+		padding: 0 20px;
+		font-size: 14px;
+		border: 1px solid var(--border-soft);
+		border-radius: 2px;
+		color: var(--fg);
+		text-decoration: none;
+		transition:
+			border-color 0.2s ease,
+			color 0.2s ease,
+			background-color 0.2s ease,
+			box-shadow 0.2s ease;
+	}
+
+	.btn-solid {
+		gap: 10px;
+		color: var(--accent);
+		border-color: var(--accent);
+	}
+
+	.btn:hover,
+	.btn:focus-visible {
+		border-color: var(--accent);
+		color: var(--accent);
+		box-shadow: 0 0 18px rgba(255, 0, 255, 0.18);
+	}
+
+	.btn-solid:hover,
+	.btn-solid:focus-visible {
+		background: var(--accent);
+		color: var(--bg);
+	}
+
+	.editor {
+		flex: 1 1 360px;
+		min-width: 0;
+		border: 1px solid var(--border);
+		border-radius: 2px;
+		background: var(--surface);
+		font-family: var(--font-mono);
+		font-size: 13px;
+	}
+
+	.editor-bar {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 10px 14px;
+		border-bottom: 1px solid var(--border);
+		color: var(--fg-muted);
+	}
+
+	.file {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+	}
+
+	.dot {
+		width: 6px;
+		height: 6px;
+		background: var(--accent);
+	}
+
+	.editor-body {
+		display: grid;
+		grid-template-columns: 32px minmax(0, 1fr);
+		padding: 16px 0;
+		line-height: 1.85;
+		overflow-x: auto;
+	}
+
+	.gutter {
+		text-align: right;
+		padding-right: 12px;
+		color: rgba(224, 255, 255, 0.3);
+		white-space: pre-line;
+	}
+
+	pre {
+		margin: 0;
+		padding: 0 14px 0 4px;
+		font: inherit;
+		color: var(--fg-soft);
+		white-space: pre;
+	}
+
+	.c-comment {
+		color: rgba(224, 255, 255, 0.5);
+	}
+
+	.c-kw {
+		color: var(--accent);
+	}
+
+	.c-id {
+		color: var(--fg);
+	}
+
+	.c-str {
+		color: rgba(224, 255, 255, 0.72);
+	}
+
+	.editor-status {
+		display: flex;
+		justify-content: space-between;
+		gap: 12px;
+		padding: 8px 14px;
+		border-top: 1px solid var(--border);
+		color: var(--fg-muted);
+		font-size: 12px;
+	}
+</style>

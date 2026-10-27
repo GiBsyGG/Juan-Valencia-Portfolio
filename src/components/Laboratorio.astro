@@ -1,0 +1,216 @@
+---
+const experimentos = [
+	{
+		slug: 'lab/[experimento-01]',
+		estado: 'en construcción',
+		url: '[URL-LAB-01]',
+		icono: ['M9 3h6', 'M10 3v6L4.5 19a1 1 0 0 0 .9 1.5h13.2a1 1 0 0 0 .9-1.5L14 9V3', 'M7 15h10'],
+	},
+	{
+		slug: 'lab/[experimento-02]',
+		estado: 'prototipo',
+		url: '[URL-LAB-02]',
+		icono: ['M8 7l-5 5 5 5', 'M16 7l5 5-5 5', 'M13.5 4l-3 16'],
+	},
+];
+---
+
+<section id="laboratorio" aria-labelledby="lab-title" class="section">
+	<div class="reveal inner">
+		<div class="head">
+			<p class="eyebrow"><span class="num" data-section-num="laboratorio">02</span> // laboratorio</p>
+			<h2 id="lab-title">Proyectos web en construcción.</h2>
+			<p class="lead">Un espacio abierto para experimentos, prototipos y herramientas que todavía están en desarrollo.</p>
+		</div>
+
+		<div class="grid">
+			{experimentos.map((e) => (
+				<article class="card">
+					<div class="top">
+						<span class="slug">
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+								{e.icono.map((d) => <path d={d} />)}
+							</svg>
+							{e.slug}
+						</span>
+						<span class="chip">{e.estado}</span>
+					</div>
+					<h3>[Nombre del experimento]</h3>
+					<p class="body">[Qué se está explorando y qué se quiere aprender o validar.]</p>
+					<p class="status">[stack] · último commit: [fecha]</p>
+					<a class="btn" href={e.url}>ver_preview →</a>
+				</article>
+			))}
+
+			<article class="card queued">
+				<div class="top">
+					<span class="slug">
+						<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 6.5V18a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V8.5a1 1 0 0 0-1-1h-8l-2-2.5H4a1 1 0 0 0-1 1z"></path><path d="M12 11v5"></path><path d="M9.5 13.5h5"></path></svg>
+						lab/[siguiente]
+					</span>
+					<span class="chip chip-queued">en cola</span>
+				</div>
+				<h3>mkdir próximo_experimento</h3>
+				<p class="body">[Idea en planificación. Se publicará aquí cuando tenga una primera versión funcional.]</p>
+				<p class="status">status: pendiente</p>
+			</article>
+		</div>
+	</div>
+</section>
+
+<style>
+	.section {
+		padding: clamp(96px, 14vh, 160px) 0;
+		border-top: 1px solid var(--border);
+	}
+
+	.inner {
+		display: flex;
+		flex-direction: column;
+		gap: 48px;
+	}
+
+	.head {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+		max-width: 640px;
+	}
+
+	.eyebrow {
+		margin: 0;
+		font-family: var(--font-mono);
+		font-size: 13px;
+		color: var(--fg-muted);
+	}
+
+	.num.is-active {
+		color: var(--accent);
+	}
+
+	h2 {
+		margin: 0;
+		font-family: var(--font-mono);
+		font-weight: 500;
+		font-size: clamp(28px, 3.4vw, 40px);
+		line-height: 1.15;
+		letter-spacing: -0.015em;
+		color: var(--fg);
+	}
+
+	.lead {
+		margin: 0;
+		font-size: 17px;
+		line-height: 1.65;
+		color: var(--fg-soft);
+	}
+
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+		gap: 24px;
+	}
+
+	.card {
+		display: flex;
+		flex-direction: column;
+		gap: 18px;
+		padding: 24px;
+		border: 1px solid var(--border);
+		border-radius: 2px;
+		background: var(--bg);
+		transition:
+			border-color 0.25s ease,
+			box-shadow 0.25s ease,
+			transform 0.25s ease;
+	}
+
+	.card.queued {
+		border-style: dashed;
+	}
+
+	.card:hover,
+	.card:focus-within {
+		border-color: var(--accent);
+		box-shadow:
+			0 0 0 1px rgba(255, 0, 255, 0.35),
+			0 0 28px rgba(255, 0, 255, 0.14);
+	}
+
+	.top {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 12px;
+		font-family: var(--font-mono);
+		font-size: 12px;
+	}
+
+	.slug {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		min-width: 0;
+		color: var(--fg-muted);
+	}
+
+	.chip {
+		flex-shrink: 0;
+		padding: 3px 8px;
+		border: 1px solid var(--border-soft);
+		color: var(--fg-soft);
+	}
+
+	.chip-queued {
+		border-color: rgba(224, 255, 255, 0.16);
+		color: var(--fg-muted);
+	}
+
+	h3 {
+		margin: 0;
+		font-family: var(--font-mono);
+		font-weight: 500;
+		font-size: 19px;
+		color: var(--fg);
+	}
+
+	.body {
+		margin: 0;
+		font-size: 15px;
+		line-height: 1.6;
+		color: var(--fg-soft);
+	}
+
+	.status {
+		margin: 0;
+		font-family: var(--font-mono);
+		font-size: 12px;
+		color: var(--fg-dim);
+	}
+
+	.btn {
+		align-self: flex-start;
+		display: inline-flex;
+		align-items: center;
+		min-height: 44px;
+		padding: 0 14px;
+		margin-top: auto;
+		font-family: var(--font-mono);
+		font-size: 13px;
+		color: var(--fg);
+		text-decoration: none;
+		border: 1px solid var(--border-soft);
+		border-radius: 2px;
+		transition:
+			border-color 0.2s ease,
+			color 0.2s ease,
+			box-shadow 0.2s ease;
+	}
+
+	.btn:hover,
+	.btn:focus-visible {
+		border-color: var(--accent);
+		color: var(--accent);
+		box-shadow: 0 0 18px rgba(255, 0, 255, 0.18);
+	}
+</style>

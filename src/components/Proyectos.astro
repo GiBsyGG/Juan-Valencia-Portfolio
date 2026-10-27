@@ -1,0 +1,365 @@
+---
+const secundarios = [
+	{ n: '02', url: '[URL-CASO-02]' },
+	{ n: '03', url: '[URL-CASO-03]' },
+];
+---
+
+<section id="proyectos" aria-labelledby="proyectos-title" class="section">
+	<div class="reveal inner">
+		<div class="head">
+			<div class="head-copy">
+				<p class="eyebrow"><span class="num" data-section-num="proyectos">01</span> // proyectos_destacados</p>
+				<h2 id="proyectos-title">Videojuegos como casos de estudio de ingeniería.</h2>
+				<p class="lead">Cada proyecto se documenta por su arquitectura: el problema técnico, las decisiones de diseño y cómo se organizan los sistemas.</p>
+			</div>
+			<p class="eyebrow">ls ./proyectos — 3 items</p>
+		</div>
+
+		<article class="card featured">
+			<div class="diagram-col">
+				<p class="small">arquitectura.diagram</p>
+				<div class="diagram" role="img" aria-label="Diagrama de arquitectura: Input, Game Loop, Systems, Render">
+					<div class="box">Input<br /><span class="dim">eventos → comandos</span></div>
+					<div class="box">Game State<br /><span class="dim">fuente de verdad</span></div>
+					<div class="box span2 hot">Systems<br /><span class="muted">[SISTEMA_A] · [SISTEMA_B] · [SISTEMA_C]</span></div>
+					<div class="box span2">Render / Audio / UI<br /><span class="dim">capa de presentación</span></div>
+				</div>
+				<p class="placeholder-note">[Reemplazar por captura o diagrama real]</p>
+			</div>
+			<div class="info-col">
+				<div class="tab">
+					<span class="file"><span class="tab-dot"></span>proyecto_01.md</span>
+					<span>[GÉNERO · PLATAFORMA]</span>
+				</div>
+				<h3 class="title-lg">[Nombre del proyecto 01]</h3>
+				<p class="body-lg">[Problema técnico que resuelve el proyecto y la decisión de arquitectura central que lo sostiene.]</p>
+				<dl class="meta meta-lg">
+					<dt>patrón</dt><dd class="strong">[ECS / State Machine / MVC]</dd>
+					<dt>stack</dt><dd class="strong">[Motor · Lenguaje · Herramientas]</dd>
+					<dt>rol</dt><dd class="strong">[Tu rol en el proyecto]</dd>
+				</dl>
+				<div class="actions">
+					<a class="btn" href="[URL-CASO-01]">leer_caso
+						<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></a>
+					<a class="btn" href="[URL-REPO-01]">repo
+						<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></a>
+				</div>
+			</div>
+		</article>
+
+		<div class="grid">
+			{secundarios.map(({ n, url }) => (
+				<article class="card compact">
+					<div class="tab">
+						<span class="file"><span class="tab-dot"></span>proyecto_{n}.md</span>
+						<span>[GÉNERO · PLATAFORMA]</span>
+					</div>
+					<div class="shot" role="img" aria-label={`Espacio para captura del proyecto ${n}`}>[captura / diagrama]</div>
+					<h3 class="title-md">[Nombre del proyecto {n}]</h3>
+					<p class="body-md">[Resumen técnico: qué sistema se diseñó y qué problema de ingeniería resolvió.]</p>
+					<dl class="meta">
+						<dt>patrón</dt><dd>[Patrón principal]</dd>
+						<dt>stack</dt><dd>[Motor · Lenguaje]</dd>
+					</dl>
+					<a class="btn push" href={url}>leer_caso
+						<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></a>
+				</article>
+			))}
+		</div>
+	</div>
+</section>
+
+<style>
+	.section {
+		padding: clamp(96px, 14vh, 160px) 0;
+		border-top: 1px solid var(--border);
+	}
+
+	.inner {
+		display: flex;
+		flex-direction: column;
+		gap: 56px;
+	}
+
+	.head {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		align-items: flex-end;
+		gap: 24px;
+	}
+
+	.head-copy {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+		max-width: 640px;
+	}
+
+	.eyebrow {
+		margin: 0;
+		font-family: var(--font-mono);
+		font-size: 13px;
+		color: var(--fg-muted);
+	}
+
+	.num.is-active {
+		color: var(--accent);
+	}
+
+	h2 {
+		margin: 0;
+		font-family: var(--font-mono);
+		font-weight: 500;
+		font-size: clamp(28px, 3.4vw, 40px);
+		line-height: 1.15;
+		letter-spacing: -0.015em;
+		color: var(--fg);
+	}
+
+	.lead {
+		margin: 0;
+		font-size: 17px;
+		line-height: 1.65;
+		color: var(--fg-soft);
+	}
+
+	.card {
+		border: 1px solid var(--border);
+		border-radius: 2px;
+		background: var(--surface);
+		transition:
+			border-color 0.25s ease,
+			box-shadow 0.25s ease,
+			transform 0.25s ease;
+	}
+
+	.card:hover,
+	.card:focus-within {
+		border-color: var(--accent);
+		box-shadow:
+			0 0 0 1px rgba(255, 0, 255, 0.35),
+			0 0 28px rgba(255, 0, 255, 0.14);
+	}
+
+	.card:hover .tab-dot,
+	.card:focus-within .tab-dot {
+		background: var(--accent);
+	}
+
+	.featured {
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	.diagram-col {
+		flex: 1 1 420px;
+		min-width: 0;
+		padding: 28px;
+		border-right: 1px solid rgba(92, 225, 230, 0.22);
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+		font-family: var(--font-mono);
+	}
+
+	.small {
+		margin: 0;
+		font-size: 12px;
+		color: var(--fg-muted);
+	}
+
+	.diagram {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 12px;
+		padding: 20px;
+		border: 1px dashed rgba(224, 255, 255, 0.16);
+		border-radius: 2px;
+		font-size: 12px;
+		color: var(--fg-soft);
+	}
+
+	.box {
+		padding: 14px;
+		border: 1px solid rgba(224, 255, 255, 0.22);
+	}
+
+	.box.span2 {
+		grid-column: span 2;
+	}
+
+	.box.hot {
+		border-color: var(--accent);
+		color: var(--fg);
+	}
+
+	.dim {
+		color: var(--fg-dim);
+	}
+
+	.muted {
+		color: var(--fg-muted);
+	}
+
+	.placeholder-note {
+		margin: 0;
+		font-size: 12px;
+		color: rgba(224, 255, 255, 0.5);
+	}
+
+	.info-col {
+		flex: 1 1 420px;
+		min-width: 0;
+		padding: 28px;
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+	}
+
+	.tab {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 12px;
+		font-family: var(--font-mono);
+		font-size: 12px;
+		color: var(--fg-muted);
+	}
+
+	.file {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+	}
+
+	.tab-dot {
+		width: 6px;
+		height: 6px;
+		background: rgba(224, 255, 255, 0.4);
+		transition: background-color 0.25s ease;
+	}
+
+	h3 {
+		margin: 0;
+		font-family: var(--font-mono);
+		font-weight: 500;
+		color: var(--fg);
+	}
+
+	.title-lg {
+		font-size: 26px;
+		line-height: 1.2;
+	}
+
+	.title-md {
+		font-size: 22px;
+		line-height: 1.25;
+	}
+
+	.body-lg,
+	.body-md {
+		margin: 0;
+		line-height: 1.65;
+		color: var(--fg-soft);
+	}
+
+	.body-lg {
+		font-size: 16px;
+	}
+
+	.body-md {
+		font-size: 15px;
+	}
+
+	.meta {
+		margin: 0;
+		display: grid;
+		grid-template-columns: 90px minmax(0, 1fr);
+		gap: 8px 16px;
+		font-family: var(--font-mono);
+		font-size: 13px;
+		color: var(--fg-soft);
+	}
+
+	.meta-lg {
+		grid-template-columns: 110px minmax(0, 1fr);
+		gap: 10px 16px;
+	}
+
+	.meta dt {
+		color: var(--fg-dim);
+	}
+
+	.meta dd {
+		margin: 0;
+	}
+
+	.meta dd.strong {
+		color: var(--fg);
+	}
+
+	.actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 12px;
+		margin-top: auto;
+		padding-top: 8px;
+	}
+
+	.btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		min-height: 44px;
+		padding: 0 16px;
+		font-family: var(--font-mono);
+		font-size: 13px;
+		color: var(--fg);
+		text-decoration: none;
+		border: 1px solid var(--border-soft);
+		border-radius: 2px;
+		transition:
+			border-color 0.2s ease,
+			color 0.2s ease,
+			box-shadow 0.2s ease;
+	}
+
+	.btn:hover,
+	.btn:focus-visible {
+		border-color: var(--accent);
+		color: var(--accent);
+		box-shadow: 0 0 18px rgba(255, 0, 255, 0.18);
+	}
+
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+		gap: 24px;
+	}
+
+	.compact {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		padding: 28px;
+	}
+
+	.shot {
+		height: 180px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border: 1px dashed rgba(224, 255, 255, 0.16);
+		border-radius: 2px;
+		font-family: var(--font-mono);
+		font-size: 12px;
+		color: rgba(224, 255, 255, 0.5);
+	}
+
+	.push {
+		align-self: flex-start;
+		margin-top: auto;
+	}
+</style>

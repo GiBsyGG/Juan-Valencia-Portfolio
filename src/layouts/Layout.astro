@@ -1,0 +1,100 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title?: string;
+}
+
+const { title = '~/[tu-nombre] — Portfolio' } = Astro.props;
+---
+
+<html lang="es">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
+			rel="stylesheet"
+		/>
+		<title>{title}</title>
+		<script is:inline>
+			document.documentElement.classList.add('js');
+		</script>
+	</head>
+	<body>
+		<div id="pf-root">
+			<div class="pf-rail" aria-hidden="true">
+				<div class="pf-rail-cursor"></div>
+			</div>
+			<slot />
+		</div>
+
+		<script>
+			const IDS = ['hero', 'proyectos', 'laboratorio', 'contacto'];
+			const CURSOR_H = 22;
+
+			const root = document.getElementById('pf-root');
+			const rail = root?.querySelector<HTMLElement>('.pf-rail');
+			const cursor = root?.querySelector<HTMLElement>('.pf-rail-cursor');
+
+			if (root && rail && cursor) {
+				const nodes = IDS.map(() => {
+					const node = document.createElement('div');
+					node.className = 'pf-rail-node';
+					rail.insertBefore(node, cursor);
+					return node;
+				});
+				const navLinks = document.querySelectorAll<HTMLElement>('[data-section]');
+				const sectionNums = document.querySelectorAll<HTMLElement>('[data-section-num]');
+				const reveals = document.querySelectorAll<HTMLElement>('.reveal');
+
+				const measure = () => {
+					const sy = window.scrollY;
+					const vh = window.innerHeight;
+					const rootTop = root.getBoundingClientRect().top + sy;
+					const cursorY = Math.max(0, Math.min(root.offsetHeight - CURSOR_H, sy + vh * 0.42 - rootTop));
+					cursor.style.top = `${Math.round(cursorY)}px`;
+
+					let active = IDS[0];
+					IDS.forEach((id, i) => {
+						const el = document.getElementById(id);
+						if (!el) return;
+						const top = el.getBoundingClientRect().top + sy - rootTop;
+						const on = cursorY + CURSOR_H / 2 >= top;
+						if (on) active = id;
+						nodes[i].style.top = `${Math.max(0, top + 4)}px`;
+						nodes[i].classList.toggle('on', on);
+					});
+
+					navLinks.forEach((el) => el.classList.toggle('is-active', el.dataset.section === active));
+					sectionNums.forEach((el) => el.classList.toggle('is-active', el.dataset.sectionNum === active));
+
+					reveals.forEach((el) => {
+						const section = el.closest('section') ?? el;
+						if (section.getBoundingClientRect().top < vh * 0.88) el.classList.add('is-visible');
+					});
+				};
+
+				let frame = 0;
+				const schedule = () => {
+					if (frame) return;
+					frame = requestAnimationFrame(() => {
+						frame = 0;
+						measure();
+					});
+				};
+
+				window.addEventListener('scroll', schedule, { passive: true });
+				window.addEventListener('resize', schedule);
+				window.addEventListener('load', schedule);
+				document.fonts?.ready.then(schedule);
+				new ResizeObserver(schedule).observe(root);
+				measure();
+			}
+		</script>
+	</body>
+</html>
