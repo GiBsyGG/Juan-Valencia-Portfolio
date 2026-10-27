@@ -7,7 +7,10 @@ const lineNumbers = '1\n2\n3\n4\n5\n6\n7\n8';
 	<div class="grid">
 		<div class="copy">
 			<p class="eyebrow"><span class="num" data-section-num="hero">00</span> // $ whoami</p>
-			<h1 id="hero-title">{titular}</h1>
+			<h1 id="hero-title">
+					<span class="sr-only">{titular}</span>
+					<span class="typed" aria-hidden="true"></span><span class="caret" aria-hidden="true"></span><span class="rest" aria-hidden="true">{titular}</span>
+				</h1>
 			<p class="lead">
 				Desarrollador de Software e Ingeniero de Sistemas. Diseño la arquitectura detrás de videojuegos y experiencias web: sistemas modulares, legibles y pensados para escalar.
 			</p>
@@ -43,6 +46,38 @@ const lineNumbers = '1\n2\n3\n4\n5\n6\n7\n8';
 		</div>
 	</div>
 </section>
+
+<noscript>
+	<style>
+		.rest {
+			opacity: 1 !important;
+		}
+	</style>
+</noscript>
+
+<script>
+	const typed = document.querySelector<HTMLElement>('#hero-title .typed');
+	const rest = document.querySelector<HTMLElement>('#hero-title .rest');
+
+	if (typed && rest) {
+		const full = rest.textContent ?? '';
+		const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+		const SPEED = 45;
+
+		if (reduce) {
+			typed.textContent = full;
+			rest.textContent = '';
+		} else {
+			let n = 0;
+			const timer = setInterval(() => {
+				n++;
+				typed.textContent = full.slice(0, n);
+				rest.textContent = full.slice(n);
+				if (n >= full.length) clearInterval(timer);
+			}, SPEED);
+		}
+	}
+</script>
 
 <style>
 	.hero {
@@ -90,6 +125,40 @@ const lineNumbers = '1\n2\n3\n4\n5\n6\n7\n8';
 		letter-spacing: -0.02em;
 		color: var(--fg);
 		white-space: pre-line;
+	}
+
+	.sr-only {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip: rect(0 0 0 0);
+		white-space: nowrap;
+	}
+
+	.caret {
+		display: inline-block;
+		width: 0.55em;
+		height: 0.95em;
+		margin-left: 2px;
+		vertical-align: -0.1em;
+		background: var(--accent);
+		animation: blink 1s steps(1) infinite;
+	}
+
+	.rest {
+		opacity: 0;
+	}
+
+	@keyframes blink {
+		0%,
+		49% {
+			opacity: 1;
+		}
+		50%,
+		100% {
+			opacity: 0;
+		}
 	}
 
 	.lead {
