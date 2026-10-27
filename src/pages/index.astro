@@ -1,9 +1,20 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
 ---
 
 <Layout>
 	<Navbar />
-	<main></main>
+	<main>
+		<Hero />
+	</main>
 </Layout>
+
+<style>
+	main {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 clamp(20px, 5vw, 64px);
+	}
+</style>
