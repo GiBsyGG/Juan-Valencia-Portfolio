@@ -1,6 +1,6 @@
 # SPEC 01 — Portfolio MVP (single page)
 
-> **Estado:** Borrador
+> **Estado:** Aprobado
 > **Depende de:** ninguna
 > **Fecha:** 2026-10-27
 > **Objetivo:** Implementar en Astro la página única del portfolio diseñada en Claude Design (navbar, hero, proyectos, laboratorio, contacto, footer) con la estética terminal/neón del diseño.
