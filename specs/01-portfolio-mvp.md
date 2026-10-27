@@ -1,6 +1,6 @@
 # SPEC 01 — Portfolio MVP (single page)
 
-> **Estado:** Aprobado
+> **Estado:** Implementado
 > **Depende de:** ninguna
 > **Fecha:** 2026-10-27
 > **Objetivo:** Implementar en Astro la página única del portfolio diseñada en Claude Design (navbar, hero, proyectos, laboratorio, contacto, footer) con la estética terminal/neón del diseño.
@@ -79,22 +79,22 @@ Convenciones:
 
 ## Criterios de aceptación
 
-- [ ] `astro build` termina sin errores ni warnings de TypeScript/Astro.
-- [ ] `/` renderiza navbar, hero, proyectos, laboratorio, contacto y footer en ese orden.
-- [ ] Los enlaces del navbar y los CTAs llevan a `#proyectos`, `#laboratorio`, `#contacto` y `#hero` con scroll suave.
-- [ ] El navbar permanece visible al hacer scroll (sticky) y resalta en magenta la sección activa.
-- [ ] A 1440 px el hero muestra dos columnas; a 390 px se apila sin scroll horizontal.
-- [ ] A ≤ 820 px se oculta la lista de enlaces y aparece el botón `menú`; al pulsarlo se abre el panel, `aria-expanded` pasa a `true` y la etiqueta cambia a `cerrar`.
-- [ ] Elegir un enlace del panel móvil cierra el panel.
-- [ ] El titular del hero se escribe carácter a carácter y no provoca cambios de altura del bloque durante la animación.
-- [ ] Con `prefers-reduced-motion: reduce` el titular aparece completo al cargar, el caret no parpadea y las secciones aparecen sin transición.
-- [ ] El riel lateral muestra un cursor magenta que sigue el scroll y 4 nodos que se rellenan al pasar cada sección; no se muestra a ≤ 820 px.
-- [ ] Las secciones proyectos, laboratorio y contacto entran con fade/translate la primera vez que se ven y no se re-ocultan.
-- [ ] Hover y foco de teclado en tarjetas y botones aplican borde magenta con glow.
-- [ ] Cada `input`/`textarea` del formulario tiene un `label` asociado por `for`/`id` y el botón de enviar no recarga ni navega la página.
-- [ ] Inter y JetBrains Mono se cargan desde Google Fonts y se aplican a texto sans y mono respectivamente.
-- [ ] No se añadieron dependencias nuevas a `package.json`.
-- [ ] Los colores, espaciados y tipografías coinciden con `project/Main.dc.html` al compararlos lado a lado en escritorio y móvil.
+- [x] `astro build` termina sin errores ni warnings de TypeScript/Astro.
+- [x] `/` renderiza navbar, hero, proyectos, laboratorio, contacto y footer en ese orden.
+- [x] Los enlaces del navbar y los CTAs llevan a `#proyectos`, `#laboratorio`, `#contacto` y `#hero` con scroll suave.
+- [x] El navbar permanece visible al hacer scroll (sticky) y resalta en magenta la sección activa.
+- [x] A 1440 px el hero muestra dos columnas; a 390 px se apila sin scroll horizontal.
+- [x] A ≤ 820 px se oculta la lista de enlaces y aparece el botón `menú`; al pulsarlo se abre el panel, `aria-expanded` pasa a `true` y la etiqueta cambia a `cerrar`.
+- [x] Elegir un enlace del panel móvil cierra el panel.
+- [x] El titular del hero se escribe carácter a carácter y no provoca cambios de altura del bloque durante la animación.
+- [x] Con `prefers-reduced-motion: reduce` el titular aparece completo al cargar, el caret no parpadea y las secciones aparecen sin transición.
+- [x] El riel lateral muestra un cursor magenta que sigue el scroll y 4 nodos que se rellenan al pasar cada sección; no se muestra a ≤ 820 px.
+- [x] Las secciones proyectos, laboratorio y contacto entran con fade/translate la primera vez que se ven y no se re-ocultan.
+- [x] Hover y foco de teclado en tarjetas y botones aplican borde magenta con glow.
+- [x] Cada `input`/`textarea` del formulario tiene un `label` asociado por `for`/`id` y el botón de enviar no recarga ni navega la página.
+- [x] Inter y JetBrains Mono se cargan desde Google Fonts y se aplican a texto sans y mono respectivamente.
+- [x] No se añadieron dependencias nuevas a `package.json`.
+- [x] Los colores, espaciados y tipografías coinciden con `project/Main.dc.html` al compararlos lado a lado en escritorio y móvil.
 
 ## Decisiones tomadas y descartadas
 
