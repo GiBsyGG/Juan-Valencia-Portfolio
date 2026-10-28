@@ -1,3 +1,7 @@
+---
+const cvUrl = `${import.meta.env.BASE_URL}cv/JuanValencia_CV_Dev.pdf`;
+---
+
 <header class="header">
 	<nav class="nav" aria-label="Principal">
 		<a class="brand" href="#hero">
@@ -8,7 +12,7 @@
 			<a class="link" data-section="proyectos" href="#proyectos"><span class="num">01.</span>proyectos</a>
 			<a class="link" data-section="laboratorio" href="#laboratorio"><span class="num">02.</span>laboratorio</a>
 			<a class="link" data-section="contacto" href="#contacto"><span class="num">03.</span>contacto</a>
-			<a class="btn cv" href="[URL-CV]">Descargar CV</a>
+			<a class="btn cv" href={cvUrl} download="JuanValencia_CV_Dev.pdf">Descargar CV</a>
 		</div>
 		<button class="btn menu-btn" type="button" aria-expanded="false" aria-controls="menu-panel" aria-label="Abrir menú">
 			<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 7h16"></path><path d="M4 12h16"></path><path d="M4 17h10"></path></svg>
@@ -19,7 +23,7 @@
 		<a href="#proyectos">&gt; 01.proyectos</a>
 		<a href="#laboratorio">&gt; 02.laboratorio</a>
 		<a href="#contacto">&gt; 03.contacto</a>
-		<a href="[URL-CV]">&gt; Descargar CV</a>
+		<a href={cvUrl} download="JuanValencia_CV_Dev.pdf">&gt; Descargar CV</a>
 	</div>
 </header>
 
