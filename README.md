@@ -1,43 +1,54 @@
-# Astro Starter Kit: Minimal
+# Juan Valencia — Portfolio
 
-```sh
-npm create astro@latest -- --template minimal
-```
+Portfolio personal de Juan Valencia, desarrollador de software e ingeniero de sistemas. Sitio estático de una sola página, en español.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+- **Producción:** https://gibsygg.github.io/JuanValDev/
 
-## 🚀 Project Structure
+## Stack
 
-Inside of your Astro project, you'll see the following folders and files:
+- [Astro](https://astro.build) 7 (sitio estático, sin frameworks UI)
+- CSS global + estilos scoped por componente
+- Fuentes: Inter y JetBrains Mono (Google Fonts)
+- Node >= 22.23.4
+
+## Secciones
+
+Orden en `src/pages/index.astro`:
+
+1. **Hero**
+2. **Proyectos** — Berracos Espantos, La Aventura Unal, Dead's Loot
+3. **Laboratorio** — experimentos en construcción / en cola (p. ej. Pulse Arkade)
+4. **Contacto**
+5. **Footer**
+
+## Estructura
 
 ```text
 /
-├── public/
+├── public/            favicon e imágenes (images/projects/)
+├── specs/             especificaciones (MVP, contenido real)
+├── references/        datos personales de referencia
 ├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── components/    Navbar, Hero, Proyectos, Laboratorio, Contacto, Footer
+│   ├── layouts/       Layout.astro (head, fuentes, meta)
+│   ├── pages/         index.astro
+│   └── styles/        global.css (tokens de color y tipografía)
+└── astro.config.mjs   site + base para GitHub Pages
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Comandos
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+| Comando           | Acción                                   |
+| :---------------- | :--------------------------------------- |
+| `npm install`     | Instala dependencias                     |
+| `npm run dev`     | Servidor local en `localhost:4321`       |
+| `npm run build`   | Build de producción en `./dist/`         |
+| `npm run preview` | Previsualiza el build                    |
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Despliegue
 
-## 🧞 Commands
+GitHub Pages. `astro.config.mjs` define `site` y `base` (`/Juan-Valencia-Portfolio/`). Rutas de imágenes y favicons usan `import.meta.env.BASE_URL` para funcionar bajo ese subpath.
 
-All commands are run from the root of the project, from a terminal:
+## Pendiente
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- Reemplazar el placeholder `[URL-CV]` del botón "Descargar CV" en `Navbar.astro`.
