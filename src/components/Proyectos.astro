@@ -106,21 +106,29 @@ const [destacado, ...secundarios] = proyectos;
 		</article>
 
 		<div class="grid">
-			{secundarios.map(({ n, url }) => (
+			{secundarios.map((p) => (
 				<article class="card compact">
 					<div class="tab">
-						<span class="file"><span class="tab-dot"></span>proyecto_{n}.md</span>
-						<span>[GÉNERO · PLATAFORMA]</span>
+						<span class="file"><span class="tab-dot"></span>proyecto_{p.n}.md</span>
+						<span>{p.genero} · {p.plataforma}</span>
 					</div>
-					<div class="shot" role="img" aria-label={`Espacio para captura del proyecto ${n}`}>[captura / diagrama]</div>
-					<h3 class="title-md">[Nombre del proyecto {n}]</h3>
-					<p class="body-md">[Resumen técnico: qué sistema se diseñó y qué problema de ingeniería resolvió.]</p>
+					<img
+						class="shot"
+						src={p.imagen}
+						alt={p.alt}
+						loading="lazy"
+						decoding="async"
+					/>
+					<h3 class="title-md">{p.nombre}</h3>
+					<p class="body-md">{p.resumen}</p>
 					<dl class="meta">
-						<dt>patrón</dt><dd>[Patrón principal]</dd>
-						<dt>stack</dt><dd>[Motor · Lenguaje]</dd>
+						<dt>patrón</dt><dd>{p.patron.join(' · ')}</dd>
+						<dt>stack</dt><dd>{p.stack.join(' · ')}</dd>
 					</dl>
-					<a class="btn push" href={url}>leer_caso
-						<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></a>
+					{p.itchUrl && (
+						<a class="btn push" href={p.itchUrl} target="_blank" rel="noopener noreferrer">Jugar
+							<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></a>
+					)}
 				</article>
 			))}
 		</div>
@@ -375,15 +383,12 @@ const [destacado, ...secundarios] = proyectos;
 	}
 
 	.shot {
+		display: block;
+		width: 100%;
 		height: 180px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		border: 1px dashed rgba(224, 255, 255, 0.16);
+		border: 1px solid rgba(224, 255, 255, 0.16);
 		border-radius: 2px;
-		font-family: var(--font-mono);
-		font-size: 12px;
-		color: rgba(224, 255, 255, 0.5);
+		object-fit: cover;
 	}
 
 	.push {
