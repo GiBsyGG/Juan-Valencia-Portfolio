@@ -1,8 +1,63 @@
 ---
-const secundarios = [
-	{ n: '02', url: '[URL-CASO-02]' },
-	{ n: '03', url: '[URL-CASO-03]' },
+interface Proyecto {
+	n: string;
+	nombre: string;
+	resumen: string;
+	patron: string[];
+	stack: string[];
+	rol: string;
+	genero: string;
+	plataforma: string;
+	imagen: string;
+	alt: string;
+	itchUrl?: string;
+}
+
+const proyectos: Proyecto[] = [
+	{
+		n: '01',
+		nombre: 'Berracos Espantos',
+		resumen:
+			'Patrón de arquitectura MVC para componentes del juego. Implementación de HSM para el comportamiento de enemigos y jugadores. Object Pooling para instanciación eficiente de objetos. SO para configuración reutilizable de componentes',
+		patron: ['MVC', 'HSM', 'Object Pooling', 'ScriptableObjects'],
+		stack: ['Unity', 'C#', 'Claude Code + Unity CLI'],
+		rol: 'Desarrollador',
+		genero: 'Videojuego',
+		plataforma: 'PC',
+		imagen: '/images/projects/Berracos_Espantos.png',
+		alt: 'Captura de Berracos Espantos',
+		itchUrl: 'https://monte-estudio.itch.io/berracos-espantos',
+	},
+	{
+		n: '02',
+		nombre: 'La Aventura Unal',
+		resumen:
+			'Se diseñó la arquitectura siguiendo MVC. Integración con Firebase como solución de base de datos para la sincronización y persistencia de información de usuarios',
+		patron: ['MVC', 'ScriptableObjects', 'Object Pooling'],
+		stack: ['Unity', 'C#'],
+		rol: 'Desarrollador',
+		genero: 'Videojuego',
+		plataforma: 'Android',
+		imagen: '/images/projects/La_Aventura_UNAL.png',
+		alt: 'Captura de La Aventura Unal',
+	},
+	{
+		n: '03',
+		nombre: "Dead's Loot",
+		resumen:
+			'Generación procedural de mapas con diferentes configuraciones, se implementó una mezcla de Random Walk y Binary Space Partitioning',
+		patron: ['Random Walk', 'Binary Space Partitioning', 'ScriptableObjects'],
+		stack: ['Unity', 'C#'],
+		rol: 'Desarrollador',
+		genero: 'Videojuego',
+		plataforma: 'PC',
+		imagen: '/images/projects/Deads_Loot.png',
+		alt: "Captura de Dead's Loot",
+		itchUrl: 'https://gibsygg.itch.io/deads-loot',
+	},
 ];
+
+const [destacado, ...secundarios] = proyectos;
 ---
 
 <section id="proyectos" aria-labelledby="proyectos-title" class="section">
