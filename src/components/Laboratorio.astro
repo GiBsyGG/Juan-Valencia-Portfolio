@@ -1,16 +1,47 @@
 ---
-const experimentos = [
+interface Experimento {
+	slug: string;
+	estado: 'en construcción' | 'en cola';
+	nombre: string;
+	exploracion: string;
+	stack: string;
+	queued?: boolean;
+	icono: string[];
+}
+
+const iconoCola = [
+	'M3 6.5V18a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V8.5a1 1 0 0 0-1-1h-8l-2-2.5H4a1 1 0 0 0-1 1z',
+	'M12 11v5',
+	'M9.5 13.5h5',
+];
+
+const experimentos: Experimento[] = [
 	{
-		slug: 'lab/[experimento-01]',
+		slug: 'lab/pulse-arkade',
 		estado: 'en construcción',
-		url: '[URL-LAB-01]',
+		nombre: 'Pulse Arkade',
+		exploracion:
+			'Biblioteca de juegos retro para explorar el uso de harness de IA, usando el patrón orquestador-trabajadores en el flujo de desarrollo de un videojuego.',
+		stack: 'Next.js',
 		icono: ['M9 3h6', 'M10 3v6L4.5 19a1 1 0 0 0 .9 1.5h13.2a1 1 0 0 0 .9-1.5L14 9V3', 'M7 15h10'],
 	},
 	{
-		slug: 'lab/[experimento-02]',
-		estado: 'prototipo',
-		url: '[URL-LAB-02]',
-		icono: ['M8 7l-5 5 5 5', 'M16 7l5 5-5 5', 'M13.5 4l-3 16'],
+		slug: 'lab/por-definir',
+		estado: 'en cola',
+		nombre: 'Por Definir',
+		exploracion: 'Aún en construcción.',
+		stack: 'Por Definir',
+		queued: true,
+		icono: iconoCola,
+	},
+	{
+		slug: 'lab/por-definir',
+		estado: 'en cola',
+		nombre: 'Por Definir',
+		exploracion: 'Aún en construcción.',
+		stack: 'Por Definir',
+		queued: true,
+		icono: iconoCola,
 	},
 ];
 ---
@@ -25,7 +56,7 @@ const experimentos = [
 
 		<div class="grid">
 			{experimentos.map((e) => (
-				<article class="card">
+				<article class:list={['card', { queued: e.queued }]}>
 					<div class="top">
 						<span class="slug">
 							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
@@ -33,27 +64,13 @@ const experimentos = [
 							</svg>
 							{e.slug}
 						</span>
-						<span class="chip">{e.estado}</span>
+						<span class:list={['chip', { 'chip-queued': e.queued }]}>{e.estado}</span>
 					</div>
-					<h3>[Nombre del experimento]</h3>
-					<p class="body">[Qué se está explorando y qué se quiere aprender o validar.]</p>
-					<p class="status">[stack] · último commit: [fecha]</p>
-					<a class="btn" href={e.url}>ver_preview →</a>
+					<h3>{e.nombre}</h3>
+					<p class="body">{e.exploracion}</p>
+					<p class="status">stack: {e.stack}</p>
 				</article>
 			))}
-
-			<article class="card queued">
-				<div class="top">
-					<span class="slug">
-						<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 6.5V18a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V8.5a1 1 0 0 0-1-1h-8l-2-2.5H4a1 1 0 0 0-1 1z"></path><path d="M12 11v5"></path><path d="M9.5 13.5h5"></path></svg>
-						lab/[siguiente]
-					</span>
-					<span class="chip chip-queued">en cola</span>
-				</div>
-				<h3>mkdir próximo_experimento</h3>
-				<p class="body">[Idea en planificación. Se publicará aquí cuando tenga una primera versión funcional.]</p>
-				<p class="status">status: pendiente</p>
-			</article>
 		</div>
 	</div>
 </section>
@@ -186,31 +203,5 @@ const experimentos = [
 		font-family: var(--font-mono);
 		font-size: 12px;
 		color: var(--fg-dim);
-	}
-
-	.btn {
-		align-self: flex-start;
-		display: inline-flex;
-		align-items: center;
-		min-height: 44px;
-		padding: 0 14px;
-		margin-top: auto;
-		font-family: var(--font-mono);
-		font-size: 13px;
-		color: var(--fg);
-		text-decoration: none;
-		border: 1px solid var(--border-soft);
-		border-radius: 2px;
-		transition:
-			border-color 0.2s ease,
-			color 0.2s ease,
-			box-shadow 0.2s ease;
-	}
-
-	.btn:hover,
-	.btn:focus-visible {
-		border-color: var(--accent);
-		color: var(--accent);
-		box-shadow: 0 0 18px rgba(255, 0, 255, 0.18);
 	}
 </style>
