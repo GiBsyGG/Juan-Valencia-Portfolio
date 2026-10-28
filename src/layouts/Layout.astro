@@ -6,7 +6,7 @@ interface Props {
 	title?: string;
 }
 
-const { title = '~/juan-valencia — Portfolio' } = Astro.props;
+const { title = 'Juan Valencia — Desarrollador de Software e Ingeniero de Sistemas' } = Astro.props;
 ---
 
 <html lang="es">
@@ -14,7 +14,11 @@ const { title = '~/juan-valencia — Portfolio' } = Astro.props;
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
 		<link rel="icon" sizes="32x32" href={`${base}/favicon.ico`} />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta
+			name="description"
+			content="Juan Valencia, desarrollador de software e ingeniero de sistemas. Arquitectura de sistemas web y videojuegos: casos de estudio, decisiones de diseño y contacto."
+		/>
 		<meta name="generator" content={Astro.generator} />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
