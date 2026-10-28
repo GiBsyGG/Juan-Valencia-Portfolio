@@ -1,6 +1,6 @@
 # SPEC 02 — Contenido real del portfolio
 
-> **Estado:** Aprovado
+> **Estado:** Implementado
 > **Depende de:** SPEC 01
 > **Fecha:** 2026-10-27
 > **Objetivo:** Reemplazar los placeholders del portfolio por el contenido real de `references/personal-data.md` (nombre, stack, 3 proyectos, 2 experimentos de laboratorio y enlaces de contacto), sin cambiar el diseño ni añadir dependencias.
@@ -127,20 +127,20 @@ El gutter pasa a `1…11` y la barra de estado a `Ln 11, Col 3`. `rol`, `foco` y
 
 ## Criterios de aceptación
 
-- [ ] `astro build` termina sin errores ni warnings de TypeScript/Astro.
-- [ ] La marca del navbar muestra `~/juan-valencia_`, el footer `© 2026 Juan Valencia` y el `<title>` por defecto `~/juan-valencia — Portfolio`.
-- [ ] El panel del hero lista `stack` con los 8 ítems y `motores: ["Unity", "Godot"]`, no contiene `base`, `[LENGUAJE]` ni `[MOTOR]`, y el gutter llega a 11 con `Ln 11, Col 3`.
-- [ ] La sección Proyectos muestra exactamente 3 tarjetas: Berracos Espantos (destacada), La Aventura Unal y Dead's Loot, cada una con su `resumen`, `patrón`, `stack` y `rol` (el destacado) o `patrón`/`stack` (secundarios) del modelo de datos.
-- [ ] Cada tarjeta de proyecto muestra su PNG con `alt` descriptivo; ninguna imagen provoca scroll horizontal a 390 px ni 1440 px.
-- [ ] Las pestañas muestran `Videojuego · PC` (01 y 03) y `Videojuego · Android` (02); no aparecen `[GÉNERO · PLATAFORMA]`, `[Reemplazar por captura…]`, `leer_caso` ni `repo` en la sección Proyectos.
-- [ ] Berracos Espantos y Dead's Loot muestran botón `Jugar` con sus `href` de itch.io (nueva pestaña, `rel="noopener noreferrer"`); La Aventura Unal no muestra botón `Jugar`.
-- [ ] Laboratorio muestra 3 tarjetas: Pulse Arkade (`en construcción`, `stack: Next.js`) y dos Por Definir (`en cola`, borde punteado, `stack: Por Definir`).
-- [ ] Laboratorio no contiene `ver_preview`, "último commit", la tarjeta `prototipo` ni `mkdir próximo_experimento`.
-- [ ] El botón de contacto muestra `jcval.dev@gmail.com` y su `href` es `mailto:jcval.dev@gmail.com`.
-- [ ] Los enlaces github y linkedin muestran `github/GiBsyGG` y `linkedin/juan-valencia`, apuntan a las URLs reales y abren en pestaña nueva con `rel="noopener noreferrer"`.
-- [ ] El único placeholder entre corchetes que queda en `src/` es `[URL-CV]` (navbar, panel móvil y contacto).
-- [ ] Hover/foco magenta, reveal, riel de scroll y menú móvil de la SPEC 01 siguen funcionando.
-- [ ] No se añadieron dependencias nuevas a `package.json`.
+- [x] `astro build` termina sin errores ni warnings de TypeScript/Astro.
+- [x] La marca del navbar muestra `~/juan-valencia_`, el footer `© 2026 Juan Valencia` y el `<title>` por defecto `~/juan-valencia — Portfolio`.
+- [x] El panel del hero lista `stack` con los 8 ítems y `motores: ["Unity", "Godot"]`, no contiene `base`, `[LENGUAJE]` ni `[MOTOR]`, y el gutter llega a 11 con `Ln 11, Col 3`.
+- [x] La sección Proyectos muestra exactamente 3 tarjetas: Berracos Espantos (destacada), La Aventura Unal y Dead's Loot, cada una con su `resumen`, `patrón`, `stack` y `rol` (el destacado) o `patrón`/`stack` (secundarios) del modelo de datos.
+- [x] Cada tarjeta de proyecto muestra su PNG con `alt` descriptivo; ninguna imagen provoca scroll horizontal a 390 px ni 1440 px.
+- [x] Las pestañas muestran `Videojuego · PC` (01 y 03) y `Videojuego · Android` (02); no aparecen `[GÉNERO · PLATAFORMA]`, `[Reemplazar por captura…]`, `leer_caso` ni `repo` en la sección Proyectos.
+- [x] Berracos Espantos y Dead's Loot muestran botón `Jugar` con sus `href` de itch.io (nueva pestaña, `rel="noopener noreferrer"`); La Aventura Unal no muestra botón `Jugar`.
+- [x] Laboratorio muestra 3 tarjetas: Pulse Arkade (`en construcción`, `stack: Next.js`) y dos Por Definir (`en cola`, borde punteado, `stack: Por Definir`).
+- [x] Laboratorio no contiene `ver_preview`, "último commit", la tarjeta `prototipo` ni `mkdir próximo_experimento`.
+- [x] El botón de contacto muestra `jcval.dev@gmail.com` y su `href` es `mailto:jcval.dev@gmail.com`.
+- [x] Los enlaces github y linkedin muestran `github/GiBsyGG` y `linkedin/juan-valencia`, apuntan a las URLs reales y abren en pestaña nueva con `rel="noopener noreferrer"`.
+- [x] El único placeholder entre corchetes que queda en `src/` es `[URL-CV]` (navbar, panel móvil y contacto).
+- [x] Hover/foco magenta, reveal, riel de scroll y menú móvil de la SPEC 01 siguen funcionando.
+- [x] No se añadieron dependencias nuevas a `package.json`.
 
 ## Decisiones tomadas y descartadas
 
