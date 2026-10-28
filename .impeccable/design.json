@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-28T00:00:00Z",
+  "title": "Design System: Portfolio Juan Valencia",
+  "extensions": {
+    "colorMeta": {
+      "magenta-cursor": { "role": "primary", "displayName": "Magenta Cursor", "canonical": "#ff00ff", "tonalRamp": ["#3d003d", "#610061", "#860086", "#aa00aa", "#d400d4", "#ff00ff", "#ff66ff", "#ffccff"] },
+      "void-black": { "role": "neutral", "displayName": "Void Black", "canonical": "#09090b", "tonalRamp": ["#09090b", "#0d0d11", "#16161b", "#22222a", "#33333d", "#55555f", "#8a8a94", "#c4c4cc"] },
+      "panel-black": { "role": "neutral", "displayName": "Panel Black", "canonical": "#0d0d11", "tonalRamp": ["#09090b", "#0d0d11", "#16161b", "#22222a", "#33333d", "#55555f", "#8a8a94", "#c4c4cc"] },
+      "cyan-mist": { "role": "neutral", "displayName": "Cyan Mist", "canonical": "#e0ffff", "tonalRamp": ["#0f2626", "#1f4d4d", "#337373", "#4d9999", "#7fbfbf", "#a8dede", "#e0ffff", "#f4ffff"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Titular del hero con efecto typing." },
+      "headline": { "displayName": "Headline", "purpose": "h2 de sección." },
+      "title": { "displayName": "Title", "purpose": "h3 de tarjetas." },
+      "body": { "displayName": "Body", "purpose": "Párrafos en Inter." },
+      "label": { "displayName": "Label", "purpose": "Eyebrows, chips, botones, metadatos en mono." }
+    },
+    "shadows": [
+      { "name": "card-hover-glow", "value": "0 0 0 1px rgba(255,0,255,0.35), 0 0 28px rgba(255,0,255,0.14)", "purpose": "Hover/foco en tarjetas." },
+      { "name": "button-hover-glow", "value": "0 0 18px rgba(255,0,255,0.18)", "purpose": "Hover/foco en botones." },
+      { "name": "rail-cursor-glow", "value": "0 0 14px rgba(255,0,255,0.45)", "purpose": "Cursor del riel lateral." }
+    ],
+    "motion": [
+      { "name": "ease-ui", "value": "0.2s ease", "purpose": "Color/borde de botones y enlaces." },
+      { "name": "ease-card", "value": "0.25s ease", "purpose": "Borde/glow de tarjetas." },
+      { "name": "ease-reveal", "value": "0.8s cubic-bezier(0.2, 0.7, 0.2, 1)", "purpose": "Reveal al scroll (fade + translateY 28px)." },
+      { "name": "caret-blink", "value": "1s steps(1) infinite", "purpose": "Caret del hero y navbar." }
+    ],
+    "breakpoints": [
+      { "name": "nav", "value": "820px" },
+      { "name": "info-col", "value": "760px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Solid Button",
+      "kind": "button",
+      "refersTo": "button-solid",
+      "description": "CTA principal: contorno magenta que se rellena en hover.",
+      "html": "<a class=\"ds-btn-solid\" href=\"#\">Ver proyectos</a>",
+      "css": ".ds-btn-solid{display:inline-flex;align-items:center;min-height:48px;padding:0 20px;font:14px var(--font-mono);color:var(--accent);border:1px solid var(--accent);border-radius:2px;text-decoration:none;transition:border-color .2s ease,color .2s ease,background-color .2s ease,box-shadow .2s ease}.ds-btn-solid:hover,.ds-btn-solid:focus-visible{background:var(--accent);color:var(--bg);box-shadow:0 0 18px rgba(255,0,255,.18)}"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "CTA secundario con borde suave.",
+      "html": "<a class=\"ds-btn-ghost\" href=\"#\">Contactar</a>",
+      "css": ".ds-btn-ghost{display:inline-flex;align-items:center;min-height:48px;padding:0 20px;font:14px var(--font-mono);color:var(--fg);border:1px solid var(--border-soft);border-radius:2px;text-decoration:none;transition:border-color .2s ease,color .2s ease,box-shadow .2s ease}.ds-btn-ghost:hover,.ds-btn-ghost:focus-visible{border-color:var(--accent);color:var(--accent);box-shadow:0 0 18px rgba(255,0,255,.18)}"
+    },
+    {
+      "name": "Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Tarjeta plana de proyecto/experimento; glow magenta en hover/foco.",
+      "html": "<div class=\"ds-card\" tabindex=\"0\"><div class=\"ds-tab\"><span class=\"ds-dot\"></span>proyecto_01</div><h3>Berracos Espantos</h3><p>Unity · C#</p></div>",
+      "css": ".ds-card{padding:24px;background:var(--surface);border:1px solid var(--border);border-radius:2px;color:var(--fg-soft);transition:border-color .25s ease,box-shadow .25s ease}.ds-card:hover,.ds-card:focus-within,.ds-card:focus{border-color:var(--accent);box-shadow:0 0 0 1px rgba(255,0,255,.35),0 0 28px rgba(255,0,255,.14)}.ds-tab{display:flex;align-items:center;gap:8px;font:13px var(--font-mono);color:var(--fg-muted)}.ds-dot{width:6px;height:6px;background:rgba(224,255,255,.4)}.ds-card:hover .ds-dot{background:var(--accent)}.ds-card h3{margin:16px 0 8px;font:500 19px var(--font-mono);color:var(--fg)}.ds-card p{margin:0;font-size:15px}"
+    },
+    {
+      "name": "Chip",
+      "kind": "chip",
+      "refersTo": "card",
+      "description": "Etiqueta de estado o stack.",
+      "html": "<span class=\"ds-chip\">en cola</span>",
+      "css": ".ds-chip{display:inline-block;padding:3px 8px;font:13px var(--font-mono);color:var(--fg-soft);border:1px solid var(--border-soft)}"
+    },
+    {
+      "name": "Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Campo de formulario; borde magenta en foco.",
+      "html": "<input class=\"ds-input\" type=\"text\" placeholder=\"Tu nombre\" />",
+      "css": ".ds-input{box-sizing:border-box;width:100%;padding:12px 14px;font:14px var(--font-sans);color:var(--fg-soft);background:transparent;border:1px solid rgba(224,255,255,.2);border-radius:2px;outline:none}.ds-input:focus{border-color:var(--accent)}"
+    },
+    {
+      "name": "Navigation Link",
+      "kind": "nav",
+      "description": "Enlace numerado del navbar; activo en magenta.",
+      "html": "<a class=\"ds-link\" href=\"#\"><span class=\"ds-num\">01</span> proyectos</a>",
+      "css": ".ds-link{padding:8px 12px;font:13px var(--font-mono);color:var(--fg-soft);text-decoration:none;transition:color .2s ease}.ds-link:hover,.ds-link:focus-visible{color:var(--accent)}.ds-num{opacity:.55}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Live Terminal",
+    "overview": "El sitio se comporta como una sesión de editor en vivo: tipografía mono en titulares, un caret que parpadea, líneas numeradas, barras de estado y un riel lateral con cursor que sigue el scroll. Todo vive sobre un negro casi absoluto; el único color con voz es el magenta, usado como el cursor de la terminal.",
+    "keyCharacteristics": [
+      "Mono (JetBrains Mono) para estructura y títulos; Inter solo para párrafos.",
+      "Un acento (magenta) sobre negro; el resto es cian pálido en opacidades.",
+      "Superficies planas, bordes de 1 px, radio de 2 px.",
+      "Glow solo en hover/foco; reveal al scroll y typing en el hero."
+    ],
+    "rules": [
+      { "name": "The Cursor Rule", "body": "El magenta marca el foco de atención actual (activo, hover, foco, cursor). Nunca se usa como relleno decorativo ni en bloques de texto.", "section": "colors" },
+      { "name": "The No-Third-Hue Rule", "body": "Solo existen negro, cian pálido y magenta. No se introducen otros matices.", "section": "colors" },
+      { "name": "The Mono Skeleton Rule", "body": "Si es estructura (título, etiqueta, botón, metadato) va en mono; si es lectura continua va en Inter.", "section": "typography" },
+      { "name": "The Flat-Until-Touched Rule", "body": "Ningún elemento brilla en reposo; el glow magenta aparece solo con hover o foco.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do usar magenta solo para activo, hover, foco y cursor (The Cursor Rule).",
+      "Do mantener radio de 2px y bordes de 1px en todo contenedor.",
+      "Do poner títulos, etiquetas y botones en JetBrains Mono; párrafos en Inter.",
+      "Do construir color y fuente con las variables de global.css y estilos específicos en <style> scoped.",
+      "Do respetar prefers-reduced-motion: typing completo, sin parpadeo, sin transiciones.",
+      "Do mantener foco visible (outline magenta 2px, offset 2px) y objetivos táctiles ≥ 44px."
+    ],
+    "donts": [
+      "Don't añadir un segundo color de acento ni rellenos magenta decorativos.",
+      "Don't dar glow o sombra en reposo; solo en hover/foco.",
+      "Don't usar esquinas redondeadas grandes, círculos ni gradientes de relleno.",
+      "Don't poner texto largo en mono ni titulares en Inter.",
+      "Don't usar rutas absolutas /... para assets; usar import.meta.env.BASE_URL."
+    ]
+  }
+}

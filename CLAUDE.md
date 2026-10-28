@@ -18,7 +18,7 @@ Sitio estático Astro 7, una sola página, contenido en español. Ver `AGENTS.md
 
 ## Convenciones
 
-- Despliegue en GitHub Pages bajo `base: '/Juan-Valencia-Portfolio/'`. Siempre construir rutas de assets con `import.meta.env.BASE_URL` (ver `Layout.astro`), nunca rutas absolutas `/...`.
+- Despliegue en GitHub Pages bajo `base: '/JuanValDev/'`. Siempre construir rutas de assets con `import.meta.env.BASE_URL` (ver `Layout.astro`), nunca rutas absolutas `/...`.
 - Textos de UI y contenido en español.
 - Indentación con tabs en `.astro`.
 - Colores y fuentes vía variables CSS de `global.css`; estilos específicos en `<style>` scoped del componente.
@@ -29,7 +29,3 @@ Sitio estático Astro 7, una sola página, contenido en español. Ver `AGENTS.md
 
 - Plugin Impeccable habilitado (`.claude/settings.json`); config en `.impeccable/`.
 - Rama de trabajo `develop`, principal `main`.
-
-## Pendiente
-
-- `[URL-CV]` placeholder en `Navbar.astro` (botón Descargar CV, desktop y móvil).

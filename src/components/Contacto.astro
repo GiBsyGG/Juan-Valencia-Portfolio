@@ -2,7 +2,7 @@
 const enlaces = [
 	{ prefijo: 'github/', valor: 'GiBsyGG', url: 'https://github.com/GiBsyGG', flecha: '↗', externo: true },
 	{ prefijo: 'linkedin/', valor: 'juan-valencia', url: 'https://www.linkedin.com/in/juan-valencia-a13161234/', flecha: '↗', externo: true },
-	{ prefijo: '', valor: 'Descargar CV', url: '[URL-CV]', flecha: '↓', externo: false },
+	{ prefijo: '', valor: 'Descargar CV', url: `${import.meta.env.BASE_URL}cv/JuanValencia_CV_Dev.pdf`, flecha: '↓', externo: false, descarga: 'JuanValencia_CV_Dev.pdf' },
 ];
 ---
 
@@ -21,6 +21,7 @@ const enlaces = [
 					<li>
 						<a
 								href={e.url}
+									download={e.descarga}
 								target={e.externo ? '_blank' : undefined}
 								rel={e.externo ? 'noopener noreferrer' : undefined}
 								aria-label={e.externo ? `${e.prefijo}${e.valor} (abre en una pestaña nueva)` : undefined}
