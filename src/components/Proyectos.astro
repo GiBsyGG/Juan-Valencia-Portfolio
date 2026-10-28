@@ -19,8 +19,8 @@ const proyectos: Proyecto[] = [
 		n: '01',
 		nombre: 'Berracos Espantos',
 		resumen:
-			'Patrón de arquitectura MVC para componentes del juego. Implementación de HSM para el comportamiento de enemigos y jugadores. Object Pooling para instanciación eficiente de objetos. SO para configuración reutilizable de componentes',
-		patron: ['MVC', 'HSM', 'Object Pooling', 'ScriptableObjects'],
+			'Arquitectura de un videojuego en Unity. MVC separa datos, lógica e interfaz de cada componente. Una máquina de estados jerárquica (HSM) organiza el comportamiento de enemigos y jugadores. Object Pooling reutiliza objetos en lugar de crearlos y destruirlos constantemente, y los ScriptableObjects permiten configurar componentes sin tocar código.',
+		patron: ['MVC', 'Máquina de estados jerárquica (HSM)', 'Object Pooling', 'ScriptableObjects'],
 		stack: ['Unity', 'C#', 'Claude Code + Unity CLI'],
 		rol: 'Desarrollador',
 		genero: 'Videojuego',
@@ -33,7 +33,7 @@ const proyectos: Proyecto[] = [
 		n: '02',
 		nombre: 'La Aventura Unal',
 		resumen:
-			'Se diseñó la arquitectura siguiendo MVC. Integración con Firebase como solución de base de datos para la sincronización y persistencia de información de usuarios',
+			'Videojuego para Android con arquitectura MVC, que separa datos, lógica e interfaz. Firebase guarda y sincroniza la información de los usuarios.',
 		patron: ['MVC', 'ScriptableObjects', 'Object Pooling'],
 		stack: ['Unity', 'C#'],
 		rol: 'Desarrollador',
@@ -46,8 +46,8 @@ const proyectos: Proyecto[] = [
 		n: '03',
 		nombre: "Dead's Loot",
 		resumen:
-			'Generación procedural de mapas con diferentes configuraciones, se implementó una mezcla de Random Walk y Binary Space Partitioning',
-		patron: ['Random Walk', 'BSP', 'ScriptableObjects'],
+			'Generación procedural de mapas con distintas configuraciones. Combina Random Walk (recorrido aleatorio) y Binary Space Partitioning (división recursiva del espacio en zonas).',
+		patron: ['Random Walk', 'Binary Space Partitioning', 'ScriptableObjects'],
 		stack: ['Unity', 'C#'],
 		rol: 'Desarrollador',
 		genero: 'Videojuego',
@@ -69,12 +69,12 @@ const [destacado, ...secundarios] = proyectos;
 				<h2 id="proyectos-title">Videojuegos como casos de estudio de ingeniería.</h2>
 				<p class="lead">Cada proyecto se documenta por su arquitectura: el problema técnico, las decisiones de diseño y cómo se organizan los sistemas.</p>
 			</div>
-			<p class="eyebrow">ls ./proyectos — 3 items</p>
+			<p class="eyebrow">{proyectos.length} proyectos</p>
 		</div>
 
 		<article class="card featured">
 			<div class="diagram-col">
-				<p class="small">{destacado.imagen.split('/').pop()}</p>
+				
 				<img
 					class="shot-lg"
 					src={destacado.imagen}
@@ -93,13 +93,13 @@ const [destacado, ...secundarios] = proyectos;
 				<h3 class="title-lg">{destacado.nombre}</h3>
 				<p class="body-lg">{destacado.resumen}</p>
 				<dl class="meta meta-lg">
-					<dt>patrón</dt><dd class="strong">{destacado.patron.join(' · ')}</dd>
+					<dt>patrones</dt><dd class="strong">{destacado.patron.join(' · ')}</dd>
 					<dt>stack</dt><dd class="strong">{destacado.stack.join(' · ')}</dd>
 					<dt>rol</dt><dd class="strong">{destacado.rol}</dd>
 				</dl>
 				{destacado.itchUrl && (
 					<div class="actions">
-						<a class="btn" href={destacado.itchUrl} target="_blank" rel="noopener noreferrer">Jugar
+						<a class="btn" href={destacado.itchUrl} target="_blank" rel="noopener noreferrer" aria-label={`Jugar ${destacado.nombre} en itch.io (abre en una pestaña nueva)`}>Jugar
 							<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></a>
 					</div>
 				)}
@@ -122,12 +122,16 @@ const [destacado, ...secundarios] = proyectos;
 					/>
 					<h3 class="title-md">{p.nombre}</h3>
 					<p class="body-md">{p.resumen}</p>
-					<dl class="meta">
-						<dt>patrón</dt><dd>{p.patron.join(' · ')}</dd>
-						<dt>stack</dt><dd>{p.stack.join(' · ')}</dd>
-					</dl>
+					<details class="more">
+						<summary>Detalles técnicos</summary>
+						<dl class="meta">
+							<dt>patrones</dt><dd>{p.patron.join(' · ')}</dd>
+							<dt>stack</dt><dd>{p.stack.join(' · ')}</dd>
+							<dt>rol</dt><dd>{p.rol}</dd>
+						</dl>
+					</details>
 					{p.itchUrl && (
-						<a class="btn push" href={p.itchUrl} target="_blank" rel="noopener noreferrer">Jugar
+						<a class="btn push" href={p.itchUrl} target="_blank" rel="noopener noreferrer" aria-label={`Jugar ${p.nombre} en itch.io (abre en una pestaña nueva)`}>Jugar
 							<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></a>
 					)}
 				</article>
@@ -177,8 +181,8 @@ const [destacado, ...secundarios] = proyectos;
 	h2 {
 		margin: 0;
 		font-family: var(--font-mono);
-		font-weight: 500;
-		font-size: clamp(28px, 3.4vw, 40px);
+		font-weight: 700;
+		font-size: clamp(30px, 4vw, 48px);
 		line-height: 1.15;
 		letter-spacing: -0.015em;
 		color: var(--fg);
@@ -216,23 +220,17 @@ const [destacado, ...secundarios] = proyectos;
 
 	.featured {
 		display: flex;
-		flex-wrap: wrap;
+		flex-direction: column;
 	}
 
 	.diagram-col {
-		flex: 1 1 420px;
 		min-width: 0;
-		padding: 28px;
-		border-right: 1px solid rgba(92, 225, 230, 0.22);
-		display: flex;
-		flex-direction: column;
-		gap: 16px;
-		font-family: var(--font-mono);
+		padding: 28px 28px 0;
 	}
 
 	.small {
 		margin: 0;
-		font-size: 12px;
+		font-size: 13px;
 		color: var(--fg-muted);
 	}
 
@@ -247,12 +245,49 @@ const [destacado, ...secundarios] = proyectos;
 	}
 
 	.info-col {
-		flex: 1 1 420px;
 		min-width: 0;
 		padding: 28px;
+		display: grid;
+		grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+		grid-template-areas:
+			'tab tab'
+			'title meta'
+			'body meta'
+			'body actions';
+		gap: 16px clamp(32px, 6vw, 72px);
+		align-items: start;
+	}
+
+	.info-col .tab { grid-area: tab; }
+	.info-col .title-lg { grid-area: title; }
+	.info-col .body-lg { grid-area: body; max-width: 62ch; }
+	.info-col .meta-lg { grid-area: meta; }
+	.info-col .actions { grid-area: actions; margin-top: 0; align-self: end; }
+
+	@media (max-width: 760px) {
+		.info-col {
+			display: flex;
+			flex-direction: column;
+			gap: 20px;
+		}
+	}
+
+	.more summary {
+		cursor: pointer;
+		min-height: 44px;
 		display: flex;
-		flex-direction: column;
-		gap: 20px;
+		align-items: center;
+		font-family: var(--font-mono);
+		font-size: 13px;
+		color: var(--fg-muted);
+	}
+
+	.more summary:hover {
+		color: var(--fg);
+	}
+
+	.more .meta {
+		padding-top: 4px;
 	}
 
 	.tab {
@@ -261,7 +296,7 @@ const [destacado, ...secundarios] = proyectos;
 		justify-content: space-between;
 		gap: 12px;
 		font-family: var(--font-mono);
-		font-size: 12px;
+		font-size: 13px;
 		color: var(--fg-muted);
 	}
 
@@ -386,7 +421,8 @@ const [destacado, ...secundarios] = proyectos;
 	.shot {
 		display: block;
 		width: 100%;
-		height: 180px;
+		aspect-ratio: 16 / 9;
+		height: auto;
 		border: 1px solid rgba(224, 255, 255, 0.16);
 		border-radius: 2px;
 		object-fit: cover;

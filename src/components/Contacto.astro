@@ -2,7 +2,7 @@
 const enlaces = [
 	{ prefijo: 'github/', valor: 'GiBsyGG', url: 'https://github.com/GiBsyGG', flecha: '↗', externo: true },
 	{ prefijo: 'linkedin/', valor: 'juan-valencia', url: 'https://www.linkedin.com/in/juan-valencia-a13161234/', flecha: '↗', externo: true },
-	{ prefijo: 'descargar/', valor: 'cv.pdf', url: '[URL-CV]', flecha: '↓', externo: false },
+	{ prefijo: '', valor: 'Descargar CV', url: '[URL-CV]', flecha: '↓', externo: false },
 ];
 ---
 
@@ -10,7 +10,7 @@ const enlaces = [
 	<div class="reveal inner">
 		<div class="copy">
 			<p class="eyebrow"><span class="num" data-section-num="contacto">03</span> // contacto</p>
-			<h2 id="contacto-title">&gt; iniciar_conversación()</h2>
+			<h2 id="contacto-title">Conversemos.</h2>
 			<p class="lead">¿Tienes un proyecto, una vacante o un sistema que necesita arquitectura? Escríbeme y respondo con gusto.</p>
 			<a class="btn mail" href="mailto:jcval.dev@gmail.com">
 				<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1"></rect><path d="M3.5 6l8.5 7 8.5-7"></path></svg>
@@ -19,7 +19,12 @@ const enlaces = [
 			<ul class="links">
 				{enlaces.map((e) => (
 					<li>
-						<a href={e.url} target={e.externo ? '_blank' : undefined} rel={e.externo ? 'noopener noreferrer' : undefined}>
+						<a
+								href={e.url}
+								target={e.externo ? '_blank' : undefined}
+								rel={e.externo ? 'noopener noreferrer' : undefined}
+								aria-label={e.externo ? `${e.prefijo}${e.valor} (abre en una pestaña nueva)` : undefined}
+							>
 							<span><span class="prefix">{e.prefijo}</span>{e.valor}</span>
 							<span aria-hidden="true">{e.flecha}</span>
 						</a>
@@ -29,21 +34,21 @@ const enlaces = [
 		</div>
 
 		<form class="form">
-			<p class="form-title">nuevo_mensaje.sh</p>
+			<p class="form-title">Enviar un mensaje</p>
 			<div class="field">
-				<label for="pf-name">--nombre</label>
+				<label for="pf-name">Nombre</label>
 				<input id="pf-name" type="text" autocomplete="name" placeholder="Tu nombre" />
 			</div>
 			<div class="field">
-				<label for="pf-email">--email</label>
+				<label for="pf-email">Correo</label>
 				<input id="pf-email" type="email" autocomplete="email" placeholder="tu@correo.com" />
 			</div>
 			<div class="field">
-				<label for="pf-msg">--mensaje</label>
+				<label for="pf-msg">Mensaje</label>
 				<textarea id="pf-msg" rows="5" placeholder="Cuéntame sobre el proyecto…"></textarea>
 			</div>
 			<button class="submit" type="button">
-				enviar --ahora
+				Enviar mensaje
 				<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
 			</button>
 		</form>
@@ -84,8 +89,8 @@ const enlaces = [
 	h2 {
 		margin: 0;
 		font-family: var(--font-mono);
-		font-weight: 500;
-		font-size: clamp(28px, 3.4vw, 40px);
+		font-weight: 700;
+		font-size: clamp(30px, 4vw, 48px);
 		line-height: 1.15;
 		letter-spacing: -0.015em;
 		color: var(--fg);
@@ -179,7 +184,7 @@ const enlaces = [
 
 	.form-title {
 		margin: 0 0 4px;
-		font-size: 12px;
+		font-size: 13px;
 		color: var(--fg-muted);
 	}
 
@@ -190,7 +195,7 @@ const enlaces = [
 	}
 
 	label {
-		font-size: 12px;
+		font-size: 13px;
 		color: var(--fg-muted);
 	}
 

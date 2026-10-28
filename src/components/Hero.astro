@@ -5,20 +5,23 @@ const titular = 'Construyo la arquitectura\nde sistemas interactivos.';
 <section id="hero" aria-labelledby="hero-title" class="hero">
 	<div class="grid">
 		<div class="copy">
-			<p class="eyebrow"><span class="num" data-section-num="hero">00</span> // $ whoami</p>
+			<div class="identity">
+				<p class="name"><span class="num" data-section-num="hero">Juan Valencia</span></p>
+				<p class="status"><span class="dot" aria-hidden="true"></span>Disponible para proyectos</p>
+			</div>
 			<h1 id="hero-title">
 					<span class="sr-only">{titular}</span>
 					<span class="typed" aria-hidden="true"></span><span class="caret" aria-hidden="true"></span><span class="rest" aria-hidden="true">{titular}</span>
 				</h1>
 			<p class="lead">
-				Desarrollador de Software e Ingeniero de Sistemas. Diseño la arquitectura detrás de videojuegos y experiencias web: sistemas modulares, legibles y pensados para escalar.
+				Desarrollador de Software e Ingeniero de Sistemas. Diseño la arquitectura detrás de experiencias web y videojuegos: sistemas modulares, legibles y pensados para escalar.
 			</p>
 			<div class="ctas">
 				<a class="btn btn-solid" href="#proyectos">
-					<span>ver_proyectos()</span>
+					<span>Ver proyectos</span>
 					<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 5v14"></path><path d="M6 13l6 6 6-6"></path></svg>
 				</a>
-				<a class="btn btn-ghost" href="#contacto">contacto --open</a>
+				<a class="btn btn-ghost" href="#contacto">Contactar</a>
 			</div>
 		</div>
 
@@ -73,6 +76,7 @@ const titular = 'Construyo la arquitectura\nde sistemas interactivos.';
 <style>
 	.hero {
 		min-height: calc(100vh - 64px);
+		min-height: calc(100svh - 64px);
 		padding: clamp(72px, 12vh, 140px) 0 clamp(80px, 12vh, 140px);
 		box-sizing: border-box;
 		display: flex;
@@ -95,12 +99,32 @@ const titular = 'Construyo la arquitectura\nde sistemas interactivos.';
 		gap: 28px;
 	}
 
-	.eyebrow {
+	.identity {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 12px 20px;
+	}
+
+	.name {
 		margin: 0;
 		font-family: var(--font-mono);
+		font-weight: 700;
+		font-size: clamp(18px, 2vw, 22px);
+		color: var(--fg);
+	}
+
+	.status {
+		margin: 0;
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		padding: 6px 12px;
+		font-family: var(--font-mono);
 		font-size: 13px;
-		color: var(--fg-muted);
-		letter-spacing: 0.02em;
+		color: var(--fg-soft);
+		border: 1px solid var(--accent);
+		border-radius: 2px;
 	}
 
 	.num.is-active {
@@ -110,7 +134,7 @@ const titular = 'Construyo la arquitectura\nde sistemas interactivos.';
 	h1 {
 		margin: 0;
 		font-family: var(--font-mono);
-		font-weight: 500;
+		font-weight: 700;
 		font-size: clamp(34px, 5.2vw, 64px);
 		line-height: 1.08;
 		letter-spacing: -0.02em;
@@ -290,6 +314,6 @@ const titular = 'Construyo la arquitectura\nde sistemas interactivos.';
 		padding: 8px 14px;
 		border-top: 1px solid var(--border);
 		color: var(--fg-muted);
-		font-size: 12px;
+		font-size: 13px;
 	}
 </style>
