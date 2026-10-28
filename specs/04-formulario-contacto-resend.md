@@ -1,6 +1,6 @@
 # SPEC 04 — Formulario de contacto con Resend
 
-> **Estado:** Borrador
+> **Estado:** Aprovado
 > **Depende de:** SPEC 01, SPEC 02
 > **Fecha:** 2026-10-28
 > **Objetivo:** Hacer que el formulario de `Contacto.astro` envíe el mensaje por correo a `jcval.dev@gmail.com` mediante un Cloudflare Worker que llama a la API de Resend, manteniendo el sitio estático en GitHub Pages.
