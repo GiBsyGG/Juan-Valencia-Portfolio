@@ -1,8 +1,8 @@
 ---
 const enlaces = [
-	{ prefijo: 'github/', valor: '[usuario]', url: '[URL-GITHUB]', flecha: '↗' },
-	{ prefijo: 'linkedin/', valor: '[usuario]', url: '[URL-LINKEDIN]', flecha: '↗' },
-	{ prefijo: 'descargar/', valor: 'cv.pdf', url: '[URL-CV]', flecha: '↓' },
+	{ prefijo: 'github/', valor: 'GiBsyGG', url: 'https://github.com/GiBsyGG', flecha: '↗', externo: true },
+	{ prefijo: 'linkedin/', valor: 'juan-valencia', url: 'https://www.linkedin.com/in/juan-valencia-a13161234/', flecha: '↗', externo: true },
+	{ prefijo: 'descargar/', valor: 'cv.pdf', url: '[URL-CV]', flecha: '↓', externo: false },
 ];
 ---
 
@@ -12,14 +12,14 @@ const enlaces = [
 			<p class="eyebrow"><span class="num" data-section-num="contacto">03</span> // contacto</p>
 			<h2 id="contacto-title">&gt; iniciar_conversación()</h2>
 			<p class="lead">¿Tienes un proyecto, una vacante o un sistema que necesita arquitectura? Escríbeme y respondo con gusto.</p>
-			<a class="btn mail" href="mailto:[tu@email.com]">
+			<a class="btn mail" href="mailto:jcval.dev@gmail.com">
 				<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1"></rect><path d="M3.5 6l8.5 7 8.5-7"></path></svg>
-				[tu@email.com]
+				jcval.dev@gmail.com
 			</a>
 			<ul class="links">
 				{enlaces.map((e) => (
 					<li>
-						<a href={e.url}>
+						<a href={e.url} target={e.externo ? '_blank' : undefined} rel={e.externo ? 'noopener noreferrer' : undefined}>
 							<span><span class="prefix">{e.prefijo}</span>{e.valor}</span>
 							<span aria-hidden="true">{e.flecha}</span>
 						</a>
