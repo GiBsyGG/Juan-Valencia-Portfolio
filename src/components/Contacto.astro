@@ -4,6 +4,8 @@ const enlaces = [
 	{ prefijo: 'linkedin/', valor: 'juan-valencia', url: 'https://www.linkedin.com/in/juan-valencia-a13161234/', flecha: '↗', externo: true },
 	{ prefijo: '', valor: 'Descargar CV', url: `${import.meta.env.BASE_URL}cv/JuanValencia_CV_Dev.pdf`, flecha: '↓', externo: false, descarga: 'JuanValencia_CV_Dev.pdf' },
 ];
+
+const endpoint = 'https://portfolio-contacto.jcval-dev.workers.dev';
 ---
 
 <section id="contacto" aria-labelledby="contacto-title" class="section">
@@ -34,24 +36,28 @@ const enlaces = [
 			</ul>
 		</div>
 
-		<form class="form">
+		<form class="form" data-endpoint={endpoint}>
 			<p class="form-title">Enviar un mensaje</p>
 			<div class="field">
 				<label for="pf-name">Nombre</label>
-				<input id="pf-name" type="text" autocomplete="name" placeholder="Tu nombre" />
+				<input id="pf-name" name="nombre" type="text" autocomplete="name" placeholder="Tu nombre" required maxlength="100" />
 			</div>
 			<div class="field">
 				<label for="pf-email">Correo</label>
-				<input id="pf-email" type="email" autocomplete="email" placeholder="tu@correo.com" />
+				<input id="pf-email" name="correo" type="email" autocomplete="email" placeholder="tu@correo.com" required maxlength="254" />
 			</div>
 			<div class="field">
 				<label for="pf-msg">Mensaje</label>
-				<textarea id="pf-msg" rows="5" placeholder="Cuéntame sobre el proyecto…"></textarea>
+				<textarea id="pf-msg" name="mensaje" rows="5" placeholder="Cuéntame sobre el proyecto…" required maxlength="5000"></textarea>
 			</div>
-			<button class="submit" type="button">
-				Enviar mensaje
+			<div class="hp" aria-hidden="true">
+				<input name="empresa" type="text" tabindex="-1" autocomplete="off" />
+			</div>
+			<button class="submit" type="submit">
+				<span class="submit-label">Enviar mensaje</span>
 				<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
 			</button>
+			<p class="status" role="status" aria-live="polite"></p>
 		</form>
 	</div>
 </section>
@@ -246,4 +252,83 @@ const enlaces = [
 		background: var(--accent);
 		color: var(--bg);
 	}
+
+	.hp {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip-path: inset(50%);
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	.status {
+		margin: 0;
+		font-size: 13px;
+		line-height: 1.5;
+		color: var(--fg-soft);
+	}
+
+	.status[data-state='error'] {
+		color: var(--accent);
+	}
+
+	.status:empty {
+		display: none;
+	}
+
+	.submit:disabled {
+		opacity: 0.6;
+		cursor: wait;
+	}
 </style>
+
+<script>
+	const form = document.querySelector<HTMLFormElement>('#contacto .form');
+
+	if (form) {
+		const endpoint = form.dataset.endpoint ?? '';
+		const boton = form.querySelector<HTMLButtonElement>('.submit');
+		const etiqueta = form.querySelector<HTMLElement>('.submit-label');
+		const estado = form.querySelector<HTMLElement>('.status');
+		const textoBoton = etiqueta?.textContent ?? 'Enviar mensaje';
+		const errorGenerico = 'No se pudo enviar. Escríbeme a jcval.dev@gmail.com.';
+
+		const mostrar = (texto: string, tipo: 'ok' | 'error') => {
+			if (!estado) return;
+			estado.dataset.state = tipo;
+			estado.textContent = texto;
+		};
+
+		form.addEventListener('submit', async (e) => {
+			e.preventDefault();
+			if (!boton || !etiqueta) return;
+
+			const datos = Object.fromEntries(new FormData(form));
+			boton.disabled = true;
+			etiqueta.textContent = 'Enviando…';
+			if (estado) estado.textContent = '';
+
+			try {
+				const res = await fetch(endpoint, {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify(datos),
+				});
+				const cuerpo = await res.json().catch(() => null);
+				if (res.ok && cuerpo?.ok) {
+					form.reset();
+					mostrar('Mensaje enviado. Te respondo pronto.', 'ok');
+				} else {
+					mostrar(cuerpo?.error ?? errorGenerico, 'error');
+				}
+			} catch {
+				mostrar(errorGenerico, 'error');
+			} finally {
+				boton.disabled = false;
+				etiqueta.textContent = textoBoton;
+			}
+		});
+	}
+</script>

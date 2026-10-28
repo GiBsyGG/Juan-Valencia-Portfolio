@@ -1,6 +1,6 @@
 # SPEC 03 — Descarga del CV
 
-> **Estado:** Aprobado
+> **Estado:** Implementado
 > **Depende de:** SPEC 01, SPEC 02
 > **Fecha:** 2026-10-28
 > **Objetivo:** Hacer que los tres botones "Descargar CV" (navbar desktop, panel móvil y Contacto) descarguen `JuanValencia_CV_Dev.pdf` servido desde el propio sitio.

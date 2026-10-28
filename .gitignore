@@ -22,3 +22,9 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# cloudflare worker (contacto, no se versiona)
+worker/
+
+# instrucciones locales de Claude
+CLAUDE.md
