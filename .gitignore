@@ -25,3 +25,6 @@ pnpm-debug.log*
 
 # cloudflare worker (contacto, no se versiona)
 worker/
+
+# instrucciones locales de Claude
+CLAUDE.md
